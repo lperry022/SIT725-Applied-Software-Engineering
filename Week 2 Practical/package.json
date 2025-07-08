@@ -1,0 +1,22 @@
+{
+  "name": "sit725-2021-t2-prac",
+  "version": "1.0.0",
+  "description": "sit 725 T2 week 2 prac",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lperry022/SIT725.git"
+  },
+  "author": "Liana Perry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lperry022/SIT725/issues"
+  },
+  "homepage": "https://github.com/lperry022/SIT725#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
