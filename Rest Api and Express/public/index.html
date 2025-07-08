@@ -1,0 +1,70 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Express Calculator API</title>
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      margin: 10px 0;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Express Calculator API</h1>
+    <p>Select one of the operations below:</p>
+    <ul>
+      <li><a href="/add?num1=10&num2=5">➕ Add: 10 + 5</a></li>
+      <li><a href="/subtract?num1=10&num2=5">➖ Subtract: 10 - 5</a></li>
+      <li><a href="/multiply?num1=10&num2=5">✖ Multiply: 10 × 5</a></li>
+      <li><a href="/divide?num1=10&num2=5">➗ Divide: 10 ÷ 5</a></li>
+    </ul>
+  </div>
+</body>
+</html>
