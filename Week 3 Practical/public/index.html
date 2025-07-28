@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+      content="ForensiX – Digital Forensics Training Platform">
+    <title>ForensiX – Digital Forensics CTF</title>
+    <link rel="icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet" />
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+  </head>
+
+  <body>
+
+    <nav class="navbar">
+      <a href="index.html" class="brand-logo">ForensiX</a>
+      <ul id="nav-mobile">
+        <li><a href="#about"><i class="material-icons">info</i> About</a></li>
+        <li><a href="#challenges"><i class="material-icons">flag</i>
+            Challenges</a></li>
+        <li><a href="#contact"><i class="material-icons">email</i>
+            Contact</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero-section center-align glass-effect">
+      <div class="container">
+        <h4>Welcome to ForensiX</h4>
+        <p class="flow-text">Train your digital forensics and incident response
+          skills through realistic CTF cases and guided AI hints.</p>
+        <a class="btn" href="sample.html">
+          <i class="material-icons left">play_arrow</i>Solve Challenge
+        </a>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="row" id="card-section">
+          <div class="row" id="card-section">
+            <div class="col s12 m6 l4">
+              <div class="card">
+                <div class="card-image">
+                  <img src="https://placehold.co/400x200?text=Challenge+1"
+                    alt="Challenge 1">
+                </div>
+                <div class="card-content">
+                  <span class="card-title">CTF Challenge 1</span>
+                  <p>Analyze the suspicious network traffic and identify the
+                    exfiltration technique.</p>
+                </div>
+                <div class="card-action">
+                  <a href="sample.html">View Challenge</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s12 m6 l4">
+              <div class="card">
+                <div class="card-image">
+                  <img src="https://placehold.co/400x200?text=Challenge+2"
+                    alt="Challenge 2">
+                </div>
+                <div class="card-content">
+                  <span class="card-title">CTF Challenge 2</span>
+                  <p>Recover deleted evidence from a forensic image and extract
+                    the hidden message.</p>
+                </div>
+                <div class="card-action">
+                  <a href="sample.html">View Challenge</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col s12 m6 l4">
+              <div class="card">
+                <div class="card-image">
+                  <img src="https://placehold.co/400x200?text=Challenge+3"
+                    alt="Challenge 3">
+                </div>
+                <div class="card-content">
+                  <span class="card-title">CTF Challenge 3</span>
+                  <p>Inspect an attacker’s persistence method through event logs
+                    and registry analysis.</p>
+                </div>
+                <div class="card-action">
+                  <a href="sample.html">View Challenge</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="page-footer glass-effect">
+      <div class="container center-align">
+        <p>© 2025 ForensiX | Built by Liana Perry</p>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+  </body>
+</html>
