@@ -1,0 +1,6 @@
+Welcome to your first digital forensics challenge.
+Somewhere in this file is a hidden flag.
+
+Nothing to see here...
+
+FLAG{welcome_to_forensix}

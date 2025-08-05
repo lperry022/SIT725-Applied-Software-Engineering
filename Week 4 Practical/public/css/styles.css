@@ -1,0 +1,271 @@
+body {
+  background: 
+    linear-gradient(135deg, #121212, #1c1c1c),
+    url("https://www.transparenttextures.com/patterns/dark-mosaic.png");
+  background-repeat: repeat;
+  background-size: auto;
+  color: #F0F0F0;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a:hover i.material-icons {
+  color: #00E5A0;
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+}
+
+.navbar-size {
+  background-color: #1E1E1E !important;
+}
+nav.navbar-size, footer.page-footer {
+  background-color: #1E1E1E !important;
+  color: #F0F0F0 !important;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+  height: 64px;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.05);
+}
+
+.brand-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #00ffff !important;
+  text-shadow: 0 0 6px #00ffff;
+  white-space: nowrap;
+}
+
+.sidenav {
+  background: rgba(30, 30, 30, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.navbar.scrolled {
+  box-shadow: 0 2px 10px rgba(0, 255, 255, 0.2);
+  background-color: rgba(30, 30, 30, 0.85);
+  transition: all 0.3s ease;
+}
+
+.page-footer {
+  background-color: #1E1E1E !important;
+  color: #B0B0B0;
+  padding: 10px 0;
+}
+
+.main-body {
+  padding: 40px 0;
+}
+
+.card {
+  background: rgba(30, 30, 30, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #F0F0F0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: calc(var(--i) * 0.2s);
+}
+
+.card:hover {
+  transform: scale(1.015);
+  box-shadow: 0 8px 16px rgba(0, 255, 255, 0.15);
+}
+
+.card .card-title {
+  color: #00FFFF;
+}
+
+.card-action a {
+  color: #00FFFF;
+}
+
+.card-action a:hover {
+  color: #00E5A0;
+}
+
+.btn {
+  background: rgba(0, 255, 255, 0.2);
+  border: 1px solid #00ffff;
+  backdrop-filter: blur(6px);
+  color: #00ffff;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: rgba(0, 229, 160, 0.2);
+  box-shadow: 0 0 12px #00E5A0;
+  color: #00E5A0;
+  transform: scale(1.05);
+}
+
+footer {
+  background-color: #1E1E1E;
+  color: #B0B0B0;
+  padding: 10px 0;
+}
+
+.materialboxed-image {
+  margin: 20px auto;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section {
+  padding: 60px 20px;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: #00FFFF;
+  margin-bottom: 10px;
+}
+
+.section-description {
+  font-size: 1.2rem;
+  color: #CCCCCC;
+}
+
+.hero-section {
+  padding: 80px 20px;
+  background-color: #181818;
+  border-top: 1px solid #2A2A2A;
+  border-bottom: 1px solid #2A2A2A;
+}
+
+.card-image img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.material-icons.left {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.material-icons {
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+
+.glass-effect {
+  background: rgba(30, 30, 30, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 40px 20px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+nav.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 255, 255, 0.05);
+}
+
+.brand-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #00ffff !important;
+  text-shadow: 0 0 6px #00ffff;
+}
+nav .brand-logo {
+  font-size: 1.8rem !important;
+  font-weight: bold;
+  color: #00ffff !important;
+  text-shadow: 0 0 6px #00ffff;
+  text-decoration: none !important;
+  display: inline-block;
+}
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 8px #00ffff; }
+  50% { text-shadow: 0 0 20px #00ffff; }
+  100% { text-shadow: 0 0 8px #00ffff; }
+}
+
+nav .brand-logo:hover {
+  animation: glowPulse 1s infinite;
+}
+
+.navbar ul#nav-mobile {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-left: auto; 
+  list-style: none;
+  padding: 0;
+}
+
+.navbar a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1rem;
+  color: #f0f0f0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+.navbar a:hover {
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.navbar.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.6);
+}
+.difficulty-tag {
+  padding: 3px 8px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+.difficulty-tag.easy {
+  background-color: #4caf50; /* green */
+}
+
+.difficulty-tag.medium {
+  background-color: #ff9800; /* orange */
+}
+
+.difficulty-tag.hard {
+  background-color: #f44336; /* red */
+}

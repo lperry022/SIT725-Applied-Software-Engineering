@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play Challenge – ForensiX</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  </head>
+  <body>
+    <nav class="navbar-size">
+      <div class="nav-wrapper">
+        <a href="index.html" class="brand-logo center">ForensiX</a>
+      </div>
+    </nav>
+
+    <main class="container" id="challenge-play-container">
+      <p class="center-align">Loading challenge...</p>
+    </main>
+
+    <script>
+    async function loadChallengePlay() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+
+      if (!id) {
+        document.getElementById('challenge-play-container').innerHTML =
+          '<p class="center-align red-text">No challenge ID provided in URL.</p>';
+        return;
+      }
+
+      try {
+const res = await fetch(`/api/challenges/${id}`);
+        if (!res.ok) throw new Error('Challenge not found');
+        const challenge = await res.json();
+
+        const stepsList = challenge.solutionSteps.map(step => `<li>${step}</li>`).join('');
+
+        document.getElementById('challenge-play-container').innerHTML = `
+          <h4>${challenge.title}</h4>
+          <p><strong>Description:</strong> ${challenge.description}</p>
+          <p><strong>Category:</strong> ${challenge.category}</p>
+          <p><strong>Difficulty:</strong> <span class="difficulty-tag ${challenge.difficulty.toLowerCase()}">${challenge.difficulty}</span></p>
+          <img src="${challenge.image}" alt="Challenge Image" class="materialboxed responsive-img" />
+          <h5>Instructions</h5>
+          <ul>${stepsList}</ul>
+
+          <form id="flag-form">
+            <div class="input-field">
+              <input type="text" id="flag-input" placeholder="Enter your flag here" required />
+            </div>
+            <button type="submit" class="btn teal">Submit Flag</button>
+            <p id="result-message" style="margin-top: 10px;"></p>
+          </form>
+        `;
+
+        document.getElementById('flag-form').addEventListener('submit', async function (e) {
+          e.preventDefault();
+          const flag = document.getElementById('flag-input').value;
+          const res = await fetch(`/api/submit-flag`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id, flag: flag })
+          });
+
+          const result = await res.json();
+          const message = document.getElementById('result-message');
+
+          if (result.correct) {
+            message.innerHTML = '<span class="green-text">✅ Correct flag! Well done.</span>';
+          } else {
+            message.innerHTML = '<span class="red-text">❌ Incorrect flag. Try again.</span>';
+          }
+        });
+
+      } catch (err) {
+        console.error(err);
+        document.getElementById('challenge-play-container').innerHTML =
+          '<p class="center-align red-text">Failed to load challenge.</p>';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadChallengePlay);
+  </script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>

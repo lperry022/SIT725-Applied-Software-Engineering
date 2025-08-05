@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+      content="ForensiX – Digital Forensics Training Platform">
+    <title>ForensiX – Digital Forensics CTF</title>
+    <link rel="icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet" />
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      .glass-effect {
+        backdrop-filter: blur(8px);
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <nav class="navbar">
+      <a href="index.html" class="brand-logo">ForensiX</a>
+      <ul id="nav-mobile">
+        <li><a href="#about"><i class="material-icons">info</i> About</a></li>
+        <li><a href="#challenges"><i class="material-icons">flag</i>
+            Challenges</a></li>
+        <li><a href="#contact"><i class="material-icons">email</i>
+            Contact</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero-section center-align glass-effect">
+      <div class="container">
+        <h4>Welcome to ForensiX</h4>
+        <p class="flow-text">Train your digital forensics and incident response
+          skills through realistic CTF cases and guided AI hints.</p>
+        <a class="btn" href="sample.html">
+          <i class="material-icons left">play_arrow</i>Solve Challenge
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="challenges">
+      <div class="container">
+        <h5 class="center-align">Available Challenges</h5>
+        <div class="row" id="challenge-container">
+          <p class="center-align">Loading challenges...</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="page-footer glass-effect">
+      <div class="container center-align">
+        <p>© 2025 ForensiX | Built by Liana Perry</p>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Load Challenges Dynamically -->
+    <script>
+      async function loadChallenges() {
+        try {
+          const res = await fetch('/api/challenges');
+          const challenges = await res.json();
+          const container = document.getElementById('challenge-container');
+          container.innerHTML = '';
+
+          if (!challenges.length) {
+            container.innerHTML = '<p class="center-align">No challenges available yet.</p>';
+            return;
+          }
+challenges.forEach(challenge => {
+  const col = document.createElement('div');
+  col.className = 'col s12 m6 l4';
+
+  col.innerHTML = `
+    <div class="card">
+      <div class="card-image grey lighten-2">
+        <img src="${challenge.image || 'images/challenge.png'}" alt="Challenge Image">
+      </div>
+      <div class="card-content black">
+        <span class="card-title cyan-text">${challenge.title}</span>
+        <p>${challenge.description}</p>
+        <p><strong>Difficulty:</strong> ${challenge.difficulty}</p>
+      </div>
+      <div class="card-action">
+        <a href="sample.html?id=${challenge._id}">View Challenge</a>
+      </div>
+    </div>
+  `;
+
+  container.appendChild(col);
+});
+
+        } catch (err) {
+          console.error('Error loading challenges:', err);
+          document.getElementById('challenge-container').innerHTML =
+            '<p class="center-align red-text">Failed to load challenges. Please try again later.</p>';
+        }
+      }
+
+      window.addEventListener('DOMContentLoaded', loadChallenges);
+    </script>
+  </body>
+</html>
