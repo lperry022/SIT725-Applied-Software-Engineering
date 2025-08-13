@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Submission Result</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <main class="result">
+    <h1><%= ok ? '✅ Correct!' : '❌ Incorrect' %></h1>
+    <p>Challenge: <strong><%= challengeTitle %></strong></p>
+    <p>Your submission: <code><%= submittedFlag %></code></p>
+
+    <div class="actions">
+      <a class="btn" href="/challenges">Back to Challenges</a>
+      <a class="btn secondary" href="/">Home</a>
+    </div>
+  </main>
+</body>
+</html>
