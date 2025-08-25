@@ -1,0 +1,39 @@
+require('dotenv').config();
+const mongoose = require('mongoose');
+const Challenge = require('../models/Challenge');
+
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/forensix';
+
+(async () => {
+  try {
+    await mongoose.connect(MONGO_URI);
+    await Challenge.deleteMany({});
+    await Challenge.insertMany([
+      {
+        title: 'Disk Forensics: Hidden File',
+        description: 'Find the hidden file and extract the secret.',
+        difficulty: 'Easy',
+        category: 'Disk',
+        image: '/images/challenge.png',
+        flag: 'flag{hidden_file_123}',
+        solutionSteps: ['Mount the image', 'List hidden files', 'Extract secret'],
+        points: 100
+      },
+      {
+        title: 'PCAP: Find the Beacon',
+        description: 'Analyze the PCAP to identify C2 beacon intervals.',
+        difficulty: 'Medium',
+        category: 'Network',
+        image: '/images/challenge.png',
+        flag: 'flag{beacon_intervals_ok}',
+        solutionSteps: ['Open in Wireshark', 'Filter by suspected host', 'Measure intervals'],
+        points: 200
+      }
+    ]);
+    console.log('Seeded challenges ✔');
+    process.exit(0);
+  } catch (e) {
+    console.error(e);
+    process.exit(1);
+  }
+})();

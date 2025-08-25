@@ -1,51 +1,59 @@
-# ForensiX – Digital Forensics CTF Web Application
+# ForensiX – Digital Forensics CTF (MVC • Express • EJS • MongoDB)
 
-ForensiX is a browser-based Capture The Flag (CTF) platform designed to help users develop and test their digital forensics and incident response skills. Built with a neon-themed Materialize UI and powered by a MongoDB backend, the application supports dynamically loaded challenges, flag validation, and difficulty tagging.
-
-## 🌐 Live Preview (Localhost)
-Visit: `http://localhost:3000`
+ForensiX is a browser-based Capture-The-Flag platform for learning digital forensics and incident response.  
+It uses a clean **MVC** split (Models / Views / Controllers), a neon **Materialize** UI, and a **MongoDB** backend.
 
 ---
 
-## 🧩 Key Features
-
-### 🎯 Challenge System
-- Add and manage CTF-style forensic challenges from MongoDB
-- Supports preview and "Play" views with full challenge details
-- **Flag Validation:** Users submit answers in a flag format (e.g. `FLAG{example}`), which are verified against the database
-
-### 🟢 Color-Coded Difficulty Tags
-- Easy: 🟩 `green`
-- Medium: 🟡 `yellow`
-- Hard: 🔴 `red`
-
-### 🧪 Challenge Details
-- Category tagging (e.g., Steganography, Metadata, etc.)
-- Challenge preview with purpose instead of just steps
-- Dynamic UI updates based on challenge ID via URL (`?id=`)
-
-### 🧠 Guided Learning
-- Hints and flag formats provided for each challenge
-- Focused on practicing core digital forensics techniques in a controlled environment
+## 🌐 Live (local)
+http://localhost:3000
 
 ---
 
-## 🎨 UI/UX & Frontend
+## ✨ Features
 
-- **Materialize CSS Integration** for layout, modals, and form controls
-- **Neon Themed Branding** with glowing logo and interactive effects
-- **Responsive Design** supporting desktop and mobile use
-- **Challenge Cards** with frosted glass design and animated entry
-- **Navigation Bar** with icons and hover glow feedback
-- **Smooth Scrolling** for anchor-linked sections
-
----
-
-## 🖼️ Screenshots
-
-> See `/screenshots` folder or the attached PDF for UI examples and challenge flow.
+- **Challenge catalog** with responsive cards
+- **Play view** per challenge with **server-side flag verification**
+- Difficulty & category tags, image preview, optional hints/steps
+- **EJS** templates with **Materialize CSS** components and mobile sidenav
+- JSON **API** for challenges (used by the home grid)
+- Security-minded defaults (flags never sent to the client; excluded from listings)
 
 ---
 
-## 📁 Project Structure
+## 🧱 Tech Stack
 
+- **Backend:** Node.js, Express, Mongoose
+- **Views:** EJS + Materialize CSS + Material Icons
+- **Database:** MongoDB (Atlas or local)
+- **Env:** dotenv
+
+---
+
+## 📁 Project Structure (MVC)
+
+├─ controllers/
+│ ├─ challengeController.js
+│ ├─ submissionController.js
+│ └─ userController.js
+├─ models/
+│ ├─ challenge.js # Mongoose schema
+│ ├─ challengeModel.js # Data access (list/find/verify/CRUD)
+│ ├─ submissionModel.js # Submissions + (optional) scoreboard
+│ └─ userModel.js
+├─ public/ # Static assets served at /
+│ ├─ css/styles.css
+│ ├─ images/challenge.png
+│ └─ js/script.js
+├─ routes/
+│ └─ challenges.js # Page + API routes
+├─ views/ # EJS templates
+│ ├─ home.ejs
+│ ├─ challenges.ejs
+│ ├─ play.ejs
+│ └─ submissionResult.ejs
+├─ scripts/
+│ └─ seed.js # Sample data seeding (optional)
+├─ .env # NEVER commit this file
+├─ server.js # App entry (starts after Mongo connects)
+└─ package.json

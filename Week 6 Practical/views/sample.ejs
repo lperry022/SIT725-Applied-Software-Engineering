@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Challenge – ForensiX</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <style>
+    .challenge-meta {
+      margin-top: 20px;
+      font-size: 1.1rem;
+    }
+
+    .challenge-meta span {
+      display: inline-block;
+      margin-right: 15px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      background-color: #1e1e1e;
+      color: #00f6ff;
+      font-weight: bold;
+    }
+
+    .preview-box {
+      background-color: #121212;
+      padding: 20px;
+      margin-top: 25px;
+      border-left: 4px solid #00f6ff;
+      border-radius: 8px;
+    }
+
+    .hint-box {
+      background-color: #1c1c1c;
+      color: #ccc;
+      padding: 15px;
+      margin-top: 20px;
+      border: 1px dashed #00f6ff;
+      border-radius: 8px;
+      font-style: italic;
+    }
+
+    .challenge-image {
+      max-width: 100%;
+      margin-top: 20px;
+      border-radius: 12px;
+    }
+
+    .btn-start {
+      margin-top: 25px;
+    }
+
+    .challenge-description {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar-size">
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo center">ForensiX</a>
+    </div>
+  </nav>
+
+  <main class="main-body container" id="challenge-container">
+    <p class="center-align">Loading challenge...</p>
+  </main>
+
+  <script>
+    async function loadChallenge() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get('id');
+
+      if (!id) {
+        document.getElementById('challenge-container').innerHTML =
+          '<p class="center-align red-text">No challenge ID provided in URL.</p>';
+        return;
+      }
+
+      try {
+const res = await fetch(`/api/challenges/${id}`);
+
+        if (!res.ok) throw new Error('Challenge not found');
+        const challenge = await res.json();
+
+        document.getElementById('challenge-container').innerHTML = `
+          <h4 class="cyan-text text-lighten-2">${challenge.title}</h4>
+
+          <p class="challenge-description">${challenge.description.replace(/\n/g, '<br>')}</p>
+
+          <div class="challenge-meta">
+<p><strong>Difficulty:</strong> <span class="difficulty-tag ${challenge.difficulty.toLowerCase()}">${challenge.difficulty}</span></p>
+            <span>📁 Category: ${challenge.category || 'N/A'}</span>
+          </div>
+
+          <img src="${challenge.image}" alt="Challenge Image" class="challenge-image materialboxed z-depth-3" />
+
+          <div class="preview-box">
+            <h5 class="white-text">🎯 Challenge Preview</h5>
+            <p class="white-text">
+              ${challenge.preview || "This challenge is designed to help you practice essential digital forensics skills in a controlled environment. You will investigate digital artifacts and uncover hidden flags using open-source techniques."}
+            </p>
+          </div>
+
+          <div class="hint-box">
+            💡 <strong>Hint:</strong> Look for the flag format <code>FLAG{...}</code> hidden in suspicious files!
+          </div>
+
+          <a href="play.html?id=${id}" class="btn btn-start teal lighten-1">🚀 Start the Challenge</a>
+        `;
+        M.AutoInit();
+      } catch (err) {
+        console.error(err);
+        document.getElementById('challenge-container').innerHTML =
+          '<p class="center-align red-text">Failed to load challenge details.</p>';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', loadChallenge);
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
