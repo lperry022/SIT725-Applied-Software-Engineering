@@ -1,41 +1,25 @@
-const {
-  getChallengeById,
-  verifyFlag
-} = require('../models/challengeModel');
+const { getChallengeSafeById, verifyFlag } = require('../models/challengeModel');
 
-const {
-  recordSubmission,
-  getScoreboard
-} = require('../models/submissionModel');
-
-// POST /submit/:id
 exports.handleSubmitFlag = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const submittedFlag = (req.body.flag || '').trim();
+    const flag = (req.body?.flag || req.body?.answer || req.body?.flagInput || '').trim();
 
-    const isCorrect = await verifyFlag(id, submittedFlag);
-    // Record the attempt (replace 'guest' with your auth user when ready)
-    await recordSubmission({ user: 'guest', challengeId: String(id), correct: isCorrect });
+    if (!flag) {
+      return res.status(400).json({ error: 'flag is required' });
+    }
 
-    const challenge = await getChallengeById(id);
-    const title = challenge?.title || `Challenge #${id}`;
+    const challenge = await getChallengeSafeById(id);
+    if (!challenge) {
+      return res.status(404).json({ error: 'Challenge not found' });
+    }
 
-    res.render('submissionResult', {
-      ok: isCorrect,
-      challengeTitle: title,
-      submittedFlag
-    });
-  } catch (err) {
-    next(err);
-  }
-};
+    const ok = await verifyFlag(id, flag);
+    if (!ok) {
+      return res.status(400).json({ correct: false, error: 'Incorrect flag' });
+    }
 
-// GET /scoreboard
-exports.renderScoreboard = async (_req, res, next) => {
-  try {
-    const rows = await getScoreboard();
-    res.render('scoreboard', { rows });
+    return res.status(200).json({ correct: true, pointsAwarded: challenge.points });
   } catch (err) {
     next(err);
   }
