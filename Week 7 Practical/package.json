@@ -1,0 +1,35 @@
+{
+  "name": "sit725",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "set NODE_ENV=test&& mocha \"test/**/*.test.js\" --timeout 20000 --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lperry022/SIT725.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lperry022/SIT725/issues"
+  },
+  "homepage": "https://github.com/lperry022/SIT725#readme",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.17.0"
+  },
+  "devDependencies": {
+    "bcryptjs": "^3.0.2",
+    "chai": "^6.0.1",
+    "cross-env": "^10.0.0",
+    "mocha": "^11.7.1",
+    "mongodb-memory-server": "^10.2.0",
+    "supertest": "^7.1.4"
+  }
+}

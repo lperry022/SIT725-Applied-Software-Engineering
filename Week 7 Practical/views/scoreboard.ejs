@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scoreboard — ForensiX</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/challenges">Challenges</a>
+      <a href="/scoreboard" aria-current="page">Scoreboard</a>
+    </nav>
+    <h1>Scoreboard</h1>
+  </header>
+
+  <main class="scoreboard">
+    <section>
+      <h2>Top Players</h2>
+      <table>
+        <thead>
+          <tr><th>#</th><th>User</th><th>Total Points</th></tr>
+        </thead>
+        <tbody>
+          <% (rows?.scores || []).forEach((s, i) => { %>
+            <tr>
+              <td><%= i + 1 %></td>
+              <td><%= s._id %></td>
+              <td><%= s.totalPoints %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Recent Attempts</h2>
+      <table>
+        <thead>
+          <tr><th>Time</th><th>User</th><th>Challenge</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <% (rows?.recent || []).forEach(r => { %>
+            <tr>
+              <td><%= new Date(r.createdAt).toLocaleString() %></td>
+              <td><%= r.user %></td>
+              <td><%= r.challengeId?.title || r.challengeId %></td>
+              <td><%= r.correct ? '✅ Correct' : '❌ Incorrect' %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
