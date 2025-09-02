@@ -1,4 +1,3 @@
-// src/server.js
 require('dotenv').config();
 const http = require('http');
 const mongoose = require('mongoose');
@@ -12,7 +11,6 @@ async function start() {
   const server = http.createServer(app);
   const { io } = createSocketLayer(server);
 
-  // Try DB, but don't block server if it fails
   try {
     if (MONGO_URI) {
       console.log('Connecting to Mongo:', MONGO_URI.replace(/\/\/.*@/,'//<redacted>@'));
