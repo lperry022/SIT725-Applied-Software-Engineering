@@ -113,5 +113,19 @@
 
     loadChallenges();
   </script>
+  <script src="/socket.io/socket.io.js"></script>
+<div id="number" style="font-size:2rem;font-weight:700"></div>
+<script>
+  // connect to root namespace
+  const socket = io();
+  socket.on('number', n => {
+    console.log('random number', n);
+    document.getElementById('number').textContent = n;
+  });
+
+  // example namespace:
+  // const fx = io('/forensix');
+  // fx.on('submission:new', msg => console.log(msg));
+</script>
 </body>
 </html>
